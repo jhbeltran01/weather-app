@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CurrentForecast from './components/CurrentForecast';
 import moment from 'moment';
-import Date from './components/DateInformation';
 import DateInformation from './components/DateInformation';
 import Forecast from './components/Forecast';
 import FetchingData from './components/FetchingData';
@@ -14,6 +13,8 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState([]);
   const [timezone, setTimezone] = useState();
   const [fetchingForecast] = useState([1, 2, 3, 4, 5, 6, 7])
+
+
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
@@ -29,9 +30,7 @@ function App() {
   }
 
 
-  useEffect(() => {
-    getUserLocation();
-  }, [])
+  useEffect(getUserLocation, [])
 
 
   const assignCurrentForecastValues = data => {
@@ -79,9 +78,7 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    fetchWeatherBasedFromUserLocation();
-  }, [userLocation])
+  useEffect(fetchWeatherBasedFromUserLocation, [userLocation]);
 
   return (
     <div className="container">
@@ -105,32 +102,34 @@ function App() {
       </div>
 
 
-      <div className='card-2 flex position-item'>
-        {
-          weatherForecast.map(forecast => {
-            if (forecast) {
-              return (
-                <Forecast
-                  key={forecast.id}
-                  imgSrc={forecast.imgSrc}
-                  imgDescription={forecast.imgDescription}
-                  day={forecast.day}
-                  nightTemp={forecast.nightTemp}
-                  dayTemp={forecast.dayTemp}
-                  firstForecast={forecast.firstForecast}
-                />
-              )
-            }
-          })
-        }
-
-        {weatherForecast.length === 0 && fetchingForecast.map((fetch, index) => {
-          if (index === 0) {
-            return <FetchingData key={index} firstForecast={true} />
-          } else {
-            return <FetchingData key={index} firstForecast={false} />
+      <div className='card-2 position-item js-card-2'>
+        <div className='js-swiper flex flex-just-center'>
+          {
+            weatherForecast.map(forecast => {
+              if (forecast) {
+                return (
+                  <Forecast
+                    key={forecast.id}
+                    imgSrc={forecast.imgSrc}
+                    imgDescription={forecast.imgDescription}
+                    day={forecast.day}
+                    nightTemp={forecast.nightTemp}
+                    dayTemp={forecast.dayTemp}
+                    firstForecast={forecast.firstForecast}
+                  />
+                )
+              }
+            })
           }
-        })}
+
+          {weatherForecast.length === 0 && fetchingForecast.map((fetch, index) => {
+            if (index === 0) {
+              return <FetchingData key={index} firstForecast={true} />
+            } else {
+              return <FetchingData key={index} firstForecast={false} />
+            }
+          })}
+        </div>
       </div>
     </div>
   );

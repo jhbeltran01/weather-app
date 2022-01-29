@@ -160,8 +160,6 @@ body {
 
     @include large {
       overflow-x: unset;
-      display: flex;
-      justify-content: center;
     }
   }
 
@@ -190,28 +188,34 @@ body {
 
 .flex {
   display: flex;
-}
 
-.flex-container-1 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.flex-container-2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @include large {
-    justify-content: center;
+  &-just-center {
+    @include large {
+      display: flex;
+      justify-content: center;
+    }
   }
-}
 
+  &-container-1 {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  &-container-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    @include large {
+      justify-content: center;
+    }
+  }
 
-.flex-container-3 {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  &-container-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 
