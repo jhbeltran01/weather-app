@@ -2,30 +2,30 @@ import React from 'react';
 
 const CurrentForecast = ({ humidity, pressure, windSpeed, sunrise, sunset }) => {
   return (
-    <div>
-      <p>
+    <div className='card'>
+      <p className='flex-container-1'>
         <span>Humidity</span>
-        <span>{humidity}</span>
+        <span>{humidity ? humidity : <span className='fetching-data'></span>}</span>
       </p>
 
-      <p>
+      <p className='flex-container-1'>
         <span>Pressure</span>
-        <span>{pressure}</span>
+        <span>{pressure ? pressure : <span className='fetching-data'></span>}</span>
       </p>
 
-      <p>
+      <p className='flex-container-1'>
         <span>Wind Speed</span>
-        <span>{windSpeed}</span>
+        <span>{windSpeed ? windSpeed : <span className='fetching-data'></span>}</span>
       </p>
 
-      <p>
+      <p className='flex-container-1'>
         <span>Sunrise</span>
-        <span>{sunrise}</span>
+        <span>{sunrise ? sunrise : <span className='fetching-data'></span>}</span>
       </p>
 
-      <p>
+      <p className='flex-container-1'>
         <span>Sunset</span>
-        <span>{sunset}</span>
+        <span>{sunset ? sunset : <span className='fetching-data'></span>}</span>
       </p>
     </div>
   );

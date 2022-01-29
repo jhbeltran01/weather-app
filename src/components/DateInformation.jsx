@@ -1,17 +1,17 @@
 import moment from 'moment';
-import React, { useState } from 'react';
+import React from 'react';
 
 const time = new Date();
 const date = moment().format('dddd, D MMMM');
 const hours = time.getHours();
 const minutes = time.getMinutes();
-const meridian = time.getHours() > 12 ? 'pm' : 'am'
+const meridian = time.getHours() > 12 ? 'PM' : 'AM'
 
 const DateInformation = () => {
   return (
-    <div>
-      <p>{hours}:{minutes} {meridian}</p>
-      <p>{date}</p>
+    <div className='time'>
+      <p><span className='time__hour'>{hours}:{minutes}</span> <span className='time__meridian'>{meridian}</span></p>
+      <p className='time__date'>{date}</p>
     </div>
   );
 }
