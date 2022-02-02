@@ -9,7 +9,7 @@ import FetchingData from './components/FetchingData';
 
 function App() {
   const [userLocation, setUserLocation] = useState({});
-  const [currentForecast, setCurrentForeCast] = useState({});
+  const [currentWeather, setCurrentWeather] = useState({});
   const [weatherForecast, setWeatherForecast] = useState([]);
   const [timezone, setTimezone] = useState();
   const [fetchingForecast] = useState([1, 2, 3, 4, 5, 6, 7])
@@ -33,8 +33,8 @@ function App() {
   useEffect(getUserLocation, [])
 
 
-  const assignCurrentForecastValues = data => {
-    return setCurrentForeCast({
+  const assignCurrentWeatherValues = data => {
+    return setCurrentWeather({
       humidity: data.humidity,
       pressure: data.pressure,
       windSpeed: data.wind_speed,
@@ -69,7 +69,7 @@ function App() {
     if (userLocation.lat) {
       axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=3ebcdfaec10c1750cd05e710592a65f8`)
         .then(response => {
-          assignCurrentForecastValues(response.data.current);
+          assignCurrentWeatherValues(response.data.current);
           assignWeatherForecastValues(response.data.daily);
           setTimezone(response.data.timezone)
         }).catch(error => {
@@ -87,11 +87,11 @@ function App() {
           <DateInformation />
 
           <CurrentForecast
-            humidity={currentForecast.humidity}
-            pressure={currentForecast.pressure}
-            windSpeed={currentForecast.windSpeed}
-            sunrise={currentForecast.sunrise}
-            sunset={currentForecast.sunset}
+            humidity={currentWeather.humidity}
+            pressure={currentWeather.pressure}
+            windSpeed={currentWeather.windSpeed}
+            sunrise={currentWeather.sunrise}
+            sunset={currentWeather.sunset}
           />
         </div>
 

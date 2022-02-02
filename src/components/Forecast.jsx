@@ -20,7 +20,6 @@ function Forecast({ imgSrc, imgDescription, day, nightTemp, dayTemp, firstForeca
       </div>
     );
   } else {
-    console.log('HAHA')
     return (
       <div className='forecast flex-container-2'>
         <div>
